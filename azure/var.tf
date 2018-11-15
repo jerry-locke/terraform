@@ -8,9 +8,3 @@ variable "prefix"
 {
   default="table5jl"
 }
-/*
-output "more"
-{
-  value="test"
-}
-*/
