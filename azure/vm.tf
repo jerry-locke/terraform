@@ -23,9 +23,21 @@ resource "azurerm_public_ip" "thisIp"
   name="table5jltfpublicip"
   location="${var.location}"
   resource_group_name="${azurerm_resource_group.thisGroup.name}"
-  public_ip_address_allocation="dynamic"
+  public_ip_address_allocation="static"
   tags{
     environment="Testing"
+  }
+  
+  provisioner "local-exec" 
+  {
+    command = "echo ${self.ip_address}"
+    on_failure = "continue"
+  }
+
+  provisioner "local-exec"
+  {
+    command = "echo 'Adios Pub IP'"
+    when = "destroy"
   }
 }
 
